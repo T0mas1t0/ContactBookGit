@@ -20,6 +20,10 @@ public class ContactBook {
         return searchIndex(name) >= 0;
     }
 
+    public boolean isContact(int phone) {
+        return searchPhoneIndex(phone) >= 0;
+    }
+
     public int getNumberOfContacts() {
         return counter;
     }
@@ -35,8 +39,8 @@ public class ContactBook {
     //Pre: name != null && hasContact(name)
     public void deleteContact(String name) {
         int index = searchIndex(name);
-        for(int i=index; i<counter; i++)
-            contacts[i] = contacts[i+1];
+        for (int i = index; i < counter; i++)
+            contacts[i] = contacts[i + 1];
         counter--;
     }
 
@@ -44,6 +48,7 @@ public class ContactBook {
     public int getPhone(String name) {
         return contacts[searchIndex(name)].getPhone();
     }
+
 
     //Pre: name != null && hasContact(name)
     public String getEmail(String name) {
@@ -64,7 +69,7 @@ public class ContactBook {
         int i = 0;
         int result = -1;
         boolean found = false;
-        while (i<counter && !found)
+        while (i < counter && !found)
             if (contacts[i].getName().equals(name))
                 found = true;
             else
@@ -74,8 +79,8 @@ public class ContactBook {
     }
 
     private void resize() {
-        Contact tmp[] = new Contact[2*contacts.length];
-        for (int i=0;i<counter; i++)
+        Contact tmp[] = new Contact[2 * contacts.length];
+        for (int i = 0; i < counter; i++)
             tmp[i] = contacts[i];
         contacts = tmp;
     }
@@ -85,12 +90,38 @@ public class ContactBook {
     }
 
     public boolean hasNext() {
-        return (currentContact >= 0 ) && (currentContact < counter);
+        return (currentContact >= 0) && (currentContact < counter);
     }
 
     //Pre: hasNext()
     public Contact next() {
         return contacts[currentContact++];
+    }
+
+    /*Igual ao comando ja criado em cima, mas este para procurar por telefone.*/
+    public int searchPhoneIndex(int phone) {
+        int i = 0;
+        int result = -1;
+        boolean found = false;
+        while (i < counter && !found)
+            if (contacts[i].getPhone() == phone)
+                found = true;
+            else
+                i++;
+        if (found) result = i;
+        return result;
+    }
+
+    /*Procurar qual o nome do contacto associado ao numero de telefone.*/
+    public String getAssociatedName(int phone) {
+        String name = "";
+        for (int i = 0; i <= contacts.length; i++) {
+            if (contacts[i].getPhone() == phone) {
+                name = contacts[i].getName();
+                break;
+            }
+        }
+        return name;
     }
 
 }
