@@ -13,6 +13,8 @@ public class Main {
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
+    public static final String GET_BY_NUMBER = "GN";
+    public static final String EQUAL_PHONES  = "EP";
     public static final String QUIT           = "Q";
 
     //Constantes que definem as mensagens para o utilizador
@@ -22,6 +24,9 @@ public class Main {
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
+    public static final String PHONE_NOT_EXISTS ="Phone number does not exist.";
+    public static final String ALL_DIFFERENT_PHONES ="All contacts have different phone numbers.";
+    public static final String SAME_PHONES ="There are contacts that share the same phone numbers.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -52,6 +57,12 @@ public class Main {
                     break;
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
+                    break;
+                case GET_BY_NUMBER:
+                    lookupContact(in,cBook);
+                    break;
+                case EQUAL_PHONES:
+                    checkEqualPhones(cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -147,4 +158,23 @@ public class Main {
         }
         else System.out.println(BOOK_EMPTY);
     }
+
+    private static void lookupContact(Scanner in, ContactBook cBook){
+        int phone = in.nextInt();in.nextLine();
+        String contact = "Falta adicionar o método no main";//metodo que busca o contato mais antigo com o numero
+        if(!contact.equals(null)){
+            System.out.println(contact);
+        }else{
+            System.out.println(PHONE_NOT_EXISTS);
+        }
+    }
+
+    private static void checkEqualPhones(ContactBook cBook){
+        if(false){//metodo para verificar se ha numeros de telemovel igual
+            System.out.println(ALL_DIFFERENT_PHONES);
+        }else{
+            System.out.println(SAME_PHONES);
+        }
+    }
+
 }
