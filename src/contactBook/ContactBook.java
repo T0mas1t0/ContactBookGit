@@ -124,4 +124,24 @@ public class ContactBook {
         return name;
     }
 
+    public boolean areUnique() {
+        boolean areUniqueF = true; //flag de controlo
+        int currPhone = 0; //Operacao e feita sempre por isso nao temos de nos preocupar se nao houver contactos porque
+                            // ha sempre
+        if(counter < 2)
+            return areUniqueF;
+
+        for (int i = 0; i < counter; i++) {
+            int count = 0;
+            currPhone = contacts[i].getPhone();
+            for (int j = 0; j < counter; j++) {
+                if (currPhone == contacts[j].getPhone()) count++;
+            }
+            if(count > 1) {
+                areUniqueF = false;
+                break;
+            }
+        }
+        return areUniqueF;
+    }
 }

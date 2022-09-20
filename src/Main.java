@@ -26,7 +26,7 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String PHONE_NOT_EXISTS = "Phone number does not exist.";
     public static final String ALL_DIFFERENT_PHONES = "All contacts have different phone numbers.";
-    public static final String SAME_PHONES = "There are contacts that share the same phone numbers.";
+    public static final String SAME_PHONES = "There are contacts that share phone numbers.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -167,7 +167,7 @@ public class Main {
     }
 
     private static void checkEqualPhones(ContactBook cBook) {
-        if (false) {//metodo para verificar se ha numeros de telemovel igual
+        if (cBook.areUnique()) {
             System.out.println(ALL_DIFFERENT_PHONES);
         } else {
             System.out.println(SAME_PHONES);
